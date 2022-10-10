@@ -1,14 +1,13 @@
-const prop = {
-
-    name1: 'Button',
-    styles: {
-      size: 20,
-      color: 'black',
-    },
-  };
-
-function changeColor({ styles:{color}}) {
-    console.log(color);
+function runInDelay(seconds) {
+return new Promise((resolve, reject) => {
+  if(!seconds || seconds < 0) {
+    reject(new Error('0보다 작음'));
+  }
+    setTimeout(resolve, seconds * 1000);
+});
 }
 
-changeColor(prop);
+runInDelay(2)
+  .then(()=>console.log('타이머 완료'))
+  .catch(console.error)
+  .finally(()=>console.log('끝'));
