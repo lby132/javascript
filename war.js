@@ -1,13 +1,23 @@
-function runInDelay(seconds) {
-return new Promise((resolve, reject) => {
-  if(!seconds || seconds < 0) {
-    reject(new Error('0보다 작음'));
-  }
-    setTimeout(resolve, seconds * 1000);
-});
+
+function Dog(name) {
+    this.name = name;
+    this.printName = function () {
+        console.log(`멍멍이 ${this.name}`);
+    };
+    this.printName = this.printName.bind(this)
 }
 
-runInDelay(2)
-  .then(()=>console.log('타이머 완료'))
-  .catch(console.error)
-  .finally(()=>console.log('끝'));
+function Cat(name) {
+    this.name = name;
+    this.printName = function () {
+        console.log(`야옹이 ${this.name}`);
+    }
+}
+const dog = new Dog('멍멍');
+const cat = new Cat('야옹');
+
+
+dog.printName = cat.printName;
+dog.printName();
+cat.printName();
+
